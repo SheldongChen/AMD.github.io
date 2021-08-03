@@ -136,49 +136,71 @@
 
 <html>
   <head>
-		<title>FineGym: A Hierarchical Video Dataset for Fine-grained Action Understanding</title>
+		<title>Explainable Person Re-Identification with Attribute-guided Metric Distillation</title>
 		<meta property="og:image" content=""/>
-		<meta property="og:title" content="FineGym: A Hierarchical Video Dataset for Fine-grained Action Understanding" />
+		<meta property="og:title" content="Explainable Person Re-Identification with Attribute-guided Metric Distillation" />
   </head>
 
   <body>
     <br>
           <center>
-          	<span style="font-size:42px">FineGym: A Hierarchical Video Dataset for Fine-grained Action Understanding</span>
-	  		  <table align=center width=600px>
+          	<span style="font-size:42px">Explainable Person Re-Identification with Attribute-guided Metric Distillation</span>
+	  		  <table align=center width=900px>
 	  			  <tr>
-	  	              <td align=center width=100px>
+	  	              <td align=center width=170px>
 	  					<center>
-	  						<span style="font-size:24px"><a href="https://sdolivia.github.io/">Dian Shao</a></span>
+	  						<span style="font-size:20px"><a href="https://github.com/">Xiaodong Chen<sup>1,2</sup></a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=140px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://github.com/">Xinchen Liu<sup>2</sup></a></span>
 		  		  		</center>
 		  		  	  </td>
 	  	              <td align=center width=100px>
 	  					<center>
-	  						<span style="font-size:24px"><a href="http://zhaoyue-zephyrus.github.io/">Yue Zhao</a></span>
+	  						<span style="font-size:20px"><a href="https://github.com/">Wu Liu<sup>2</sup></a></span>
 		  		  		</center>
 		  		  	  </td>
-	  	              <td align=center width=100px>
-	  					<center>
-	  						<span style="font-size:24px"><a href="http://daibo.info/">Bo Dai</a></span>
-		  		  		</center>
-		  		  	  </td>
+					<td align=center width=170px>
+						<center>
+							<span style="font-size:20px"><a href="https://github.com/">Xiao-Ping Zhang<sup>3</sup>   </a></span>
+						</center>
+					</td>
+					<td align=center width=170px>
+						<center>
+							<span style="font-size:20px"><a href="https://github.com/">Yongdong Zhang<sup>1</sup></a></span>
+						</center>
+					</td>
+
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="http://dahua.me/">Dahua Lin</a></span>
+							<span style="font-size:20px"><a href="https://github.com/">Tao Mei<sup>2</sup></a></span>
 						</center>
 					</td>
 				</table>
-          		<!-- <span style="font-size:30px">ECCV 2016.</span> -->
+          		<!-- <span style="font-size:30px">ICCV 2021.</span> -->
 
-			  <table align=center width=600px>
+			  <table align=center width=900px>
 				  <tr>
-					  <td align=center width=100px>
+					  <td align=center width=400px>
 						<center>
-							<span style="font-size:20px"><a href="http://www.cuhk.edu.hk/english/index.html">The Chinese University of Hong Kong</a></span>
+							<span style="font-size:18px"><a href="https://github.com/"><sup>1</sup>University Of Science And Technology Of China</a></span>
 						</center>
 					  </td>
+					  <td align=center width=250px>
+						<center>
+							<span style="font-size:18px"><a href="https://github.com/"><sup>2</sup>AI Research of JD.com</a></span>
+						</center>
+					  </td>
+					  <td align=center width=200px>
+						<center>
+							<span style="font-size:18px"><a href="https://github.com/"><sup>3</sup>Ryerson University</a></span>
+						</center>
+					  </td>
+
 			  </table>
-			IEEE Conference on Computer Vision and Pattern Recognition (<a href="http://cvpr2020.thecvf.com/" target="_blank">CVPR</a>) 2020, <font color="#e86e14">Oral Presentation</font>
+			IEEE International Conference on Computer Vision (<a href="http://iccv2021.thecvf.com/" target="_blank">ICCV</a>) 2021, <font color="#e86e14">Poster Presentation</font>
           </center>
 
    		  <br><br>
@@ -189,18 +211,13 @@
   			  <tr>
   	              <td width=400px>
   					<center>
-  	                	<a href="./resources/images/teaser.png"><img class="rounded" src = "./resources/images/teaser.png" width="800px"></img></href></a><br>
+  	                	<a href="./resources/figures/Figure1.png" ><img class="rounded" src = "./resources/figures/Figure1.png" width="95%" ></img></href></a><br>
 					</center>
   	              </td>
                 </tr>
   	              <td width=400px>
   					<center>
-  	                	<span style="font-size:14px"><i>An overview of the FineGym dataset.
-							We provide coarse-to-fine annotations both temporally and semantically.
-							There are three levels of categorical labels.
-							The temporal dimension (represented by the two bars) is also divided into two levels, i.e., actions and sub-actions.
-							Sub-actions could be described generally using set categories or precisely using element categories.
-							Ground-truth element categories of sub-action instances are obtained via manually constructed decision-trees.</i>
+  	                	<span style="font-size:14px"><i>The motivation of attribute-guided metric distillation. (a) Given a query, the ReID model returns a rank list of gallery images based on pairwise metrics. (b) The learned Interpreter can visualize intuitive attention maps of attributes to tell users what attributes make two persons different, and generate contributions of attributes to reflect the impact of each attribute.  (c) Refined results by re-weighted distances from Interpreter. (Best viewed in color.)</i>
 					</center>
   	              </td>
 
@@ -213,13 +230,13 @@
 				<td width=300px>
 					<center>
 						<a href="#download"><img class="rounded" onmouseover="this.src='./resources/images/data_icon.png';" onmouseout="this.src='./resources/images/data_icon.png';" src = "./resources/images/data_icon.png" height = "120px"></a><br>
-						<span style="font-size:16px">Download (annotations)</span><br>
+						<span style="font-size:16px">Download</span><br>
 					</center>
 				</td>
 				<td width=300px>
 					<center>
 						<a href="#video"><img class="rounded" onmouseover="this.src='./resources/images/video_icon.png';" onmouseout="this.src='./resources/images/video_icon.png';" src = "./resources/images/video_icon.png" height = "120px"></a><br>
-						<span style="font-size:16px">Videos at CVPR'2020</span><br>
+						<span style="font-size:16px">Videos at ICCV'2021</span><br>
 					</center>
 				</td>
 				<td width=300px>
@@ -246,68 +263,30 @@
 		  </table>
 		  <center>
 			<span>
-		 	On public benchmarks, current action recognition techniques have achieved great success.
-		  	However, when used in real-world applications, e.g. sport analysis, which requires the capability of parsing an activity into phases and differentiating between subtly different actions, their performances remain far from being satisfactory.
-		  	To take action recognition to a new level, we develop <i>FineGym</i>, a new dataset built on top of gymnasium videos.
-		  	Compared to existing action recognition datasets, FineGym is distinguished in richness, quality, and diversity.
-		  	In particular, it provides temporal annotations at both action and sub-action levels with a three-level semantic hierarchy.
-		  	For example, a <i>"balance beam"</i> event will be annotated as a sequence of elementary sub-actions derived from five sets:
-		  	<i>"leap-jumphop"</i>, <i>"beam-turns"</i>, <i>"flight-salto"</i>, <i>"flight-handspring"</i>, and <i>"dismount"</i>, 
-		  	where the sub-action in each set will be further annotated with finely defined class labels.
-		  	This new level of granularity presents significant challenges for action recognition, e.g. how to parse the temporal structures from a coherent action, and how to distinguish between subtly different action classes.
-		  	We systematically investigate representative methods on this dataset and obtain a number of interesting findings. We hope this dataset could advance research towards action understanding.
+		 	Despite the great progress of person re-identification (ReID) with the adoption of Convolutional Neural Networks, current ReID models are opaque and only outputs a scalar distance between two persons.
+			There are few methods providing users semantically understandable explanations for why two persons are the same one or not.
+			In this paper, we propose a post-hoc method, named Attribute-guided Metric Distillation (AMD), to explain existing ReID models.
+			This is the first method to explore attributes to answer: 1) what and where the attributes make two persons different, and 2) how much each attribute contributes to the difference.
+			In AMD, we design a pluggable interpreter network for target models to generate quantitative contributions of attributes and visualize accurate attention maps of the most discriminative attributes.
+			To achieve this goal, we propose a metric distillation loss by which the interpreter learns to decompose the distance of two persons into components of attributes with knowledge distilled from the target model.
+			Moreover, we propose an attribute prior loss to make the interpreter generate attribute-guided attention maps and to eliminate biases caused by the imbalanced distribution of attributes.
+			This loss can guide the interpreter to focus on the exclusive and discriminative attributes rather than the large-area but common attributes of two persons. 
+			Comprehensive experiments show that the interpreter can generate effective and intuitive explanations for varied models and generalize well under cross-domain settings.
+			As a by-product, the accuracy of target models can be further improved with our interpreter.
 		  	</span>
 		  </center>
   		  <br><br>
 		  <hr>
 
-		  <table align=center width=720px>
-			<center><h1>Demo video</h1></center>
-			<tr>
-				<table align=center width=720px>
-					<tr>
-						<td align=center width=720px>
-							<iframe width="600" height="320" src="https://www.youtube.com/embed/notLDzBJ2mg" frameborder="0" allowfullscreen></iframe>
-						</td>
-					  </tr>
-					<tr>
-						<td align=center width=720px>
-						  <span style="font-size:14px"><i>
-							An illustrative video of FineGym's hiecharcial annotations given a complete competition.
-							Action and subaction boundaries are highlighted while irrelevant fragments are fast-forwarded.
-							We also present the tree-based process at the end of the demo video.</i>
-						</span>
-						   </td>
-					  </tr>
-					 </table>
-			  </tr>
-		  </table>
-		   <br><br>
-		  <hr>
-
-		  <table id="video" align=center width=720px>
-			<center><h1>5-Minute Oral presentation video</h1></center>
-			<tr>
-				<table align=center width=720px>
-					<tr>
-						<td align=center width=720px>
-							<iframe width="600" height="320" src="https://www.youtube.com/embed/nXpB5l40trg" frameborder="0" allowfullscreen></iframe>
-						</td>
-					  </tr>
-					<tr>
-					 </table>
-			  </tr>
-		  </table>
-		   <br><br>
-		  <hr>
+		
 
 		  <table align=center width=720px>
-			<center><h1>1-Minute presentation video</h1></center>
+			<center><h1>2-Minute presentation video</h1></center>
 			<tr>
 				<table align=center width=720px>
 					<tr>
 						<td align=center width=720px>
-							<iframe width="600" height="320" src="https://www.youtube.com/embed/b1Sm1WDcypw" frameborder="0" allowfullscreen></iframe>
+							<iframe width="600" height="320" src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
 						</td>
 					  </tr>
 					<tr>
@@ -319,20 +298,18 @@
 
 
 		  <table align=center width=720px>
-			<center><h1>Dataset hierarchy</h1></center>
+			<center><h1>Architecture</h1></center>
 			<tr>
 				<td width=400px>
 				  <center>
-					  <a><img class="rounded" src = "./resources/images/hierarchy.png" width="800px"></img></a><br>
+					  <a><img class="rounded" src = "./resources/figures/Figure2.png" width="800px"></img></a><br>
 				</center>
 				</td>
 			</tr>
 				<td width=400px>
 				  <center>
 					  <span style="font-size:14px"><i>
-						FineGym organizes both the semantic and temporal annotations hierarchically.
-						The upper part shows three levels of categorical labels, namely events (e.g. balance beam), sets (e.g. dismounts) and elements (e.g. salto forward tucked).
-						The lower part depicts the two-level temporal annotations, i.e. the temporal boundaries of actions (in the top bar) and sub-action instances (in the bottom bar).
+						The overall architecture of the attribute-guided metric distillation framework for person ReID. (a) The target ReID model that generates the pairwise distance for an image pair. (b) The interpret network that learns to decompose the pairwise distance into components of attributes and generates attention-guided attention maps for individual attributes. (Best viewed in color.)
 						</i>
 				</center>
 				</td>
@@ -342,48 +319,23 @@
 		  <hr>
 
 		  <table align=center width=720px>
-			<center><h1>Sub-action examples</h1></center>
+			<center><h1>Statistics of Attributes</h1></center>
 			<tr>
 				<center>
 				<span>
-					We present several examples of fine-grained sub-action instances.
-					Each group belongs to three element categories within a same event (BB, FX, UB, and VT).
-					It can be seen such fine-grained instances contain subtle and challenging differences.
-					(Hover on the GIF for a 0.25x slowdown)</span>
+					The statistics of attributes in Market-1501 and DukeMTMC-ReID are shown in Figures, which shows that the attributes are very imbalanced</span>
 				<br>
 				</center>
 				<td width=360px>
 					<center>
-						<span style="font-size:22px"><a>Balance Beam (BB)</a></span><br>
-						<a><img onmouseover="this.src='./resources/examples/example_bb_01_slow.gif';" onmouseout="this.src='./resources/examples/example_bb_01_normal.gif';" src = "./resources/examples/example_bb_01_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_bb_02_slow.gif';" onmouseout="this.src='./resources/examples/example_bb_02_normal.gif';" src = "./resources/examples/example_bb_02_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_bb_03_slow.gif';" onmouseout="this.src='./resources/examples/example_bb_03_normal.gif';" src = "./resources/examples/example_bb_03_normal.gif" width = "100px"></img></a>
+						<span style="font-size:22px"><a>Market-1501</a></span><br>
+						<a><img class="rounded" src = "./resources/figures/Figure3.png" width="360px"></img></a><br>
 					</center>
 				</td>
 				<td width=360px>
 					<center>
-						<span style="font-size:22px"><a>Floor Exercise (FX)</a></span><br>
-						<a><img onmouseover="this.src='./resources/examples/example_fx_01_slow.gif';" onmouseout="this.src='./resources/examples/example_fx_01_normal.gif';" src = "./resources/examples/example_fx_01_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_fx_02_slow.gif';" onmouseout="this.src='./resources/examples/example_fx_02_normal.gif';" src = "./resources/examples/example_fx_02_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_fx_03_slow.gif';" onmouseout="this.src='./resources/examples/example_fx_03_normal.gif';" src = "./resources/examples/example_fx_03_normal.gif" width = "100px"></img></a>
-					</center>
-				</td>
-			</tr>
-			<tr>
-				<td width=360px>
-					<center>
-						<span style="font-size:22px"><a>Uneven Bar (UB)</a></span><br>
-						<a><img onmouseover="this.src='./resources/examples/example_ub_01_slow.gif';" onmouseout="this.src='./resources/examples/example_ub_01_normal.gif';" src = "./resources/examples/example_ub_01_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_ub_02_slow.gif';" onmouseout="this.src='./resources/examples/example_ub_02_normal.gif';" src = "./resources/examples/example_ub_02_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_ub_03_slow.gif';" onmouseout="this.src='./resources/examples/example_ub_03_normal.gif';" src = "./resources/examples/example_ub_03_normal.gif" width = "100px"></img></a>
-					</center>
-				</td>
-				<td width=360px>
-					<center>
-						<span style="font-size:22px"><a>Vault (VT)</a></span><br>
-						<a><img onmouseover="this.src='./resources/examples/example_vt_01_slow.gif';" onmouseout="this.src='./resources/examples/example_vt_01_normal.gif';" src = "./resources/examples/example_vt_01_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_vt_02_slow.gif';" onmouseout="this.src='./resources/examples/example_vt_02_normal.gif';" src = "./resources/examples/example_vt_02_normal.gif" width = "100px"></img></a>
-						<a><img onmouseover="this.src='./resources/examples/example_vt_03_slow.gif';" onmouseout="this.src='./resources/examples/example_vt_03_normal.gif';" src = "./resources/examples/example_vt_03_normal.gif" width = "100px"></img></a>
+						<span style="font-size:22px"><a>DukeMTMC-ReID</a></span><br>
+						<a><img class="rounded" src = "./resources/figures/Figure5.png" width="360px"></img></a><br>
 					</center>
 				</td>
 			</tr>
@@ -393,20 +345,20 @@
 		  <hr>
 
 		  <table id='analysis' align=center width=720px>
-			<center><h1>Empirical Studies and Analysis</h1></center>
+			<center><h1>Evaluation and Visualization</h1></center>
 			<table>
-			<center><h2> (1) Element-level action recognition raises great challenges for existing methods. </h2></center>
+			<center><h2> (1) Evaluation of interpreters for different backbone models on Market-1501 and DukeMTMC-ReID.  </h2></center>
 			<tr>
 				  <td width=400px>
 				  <center>
-					  <a><img class="rounded" src = "./resources/images/element_recognition.png" width="800px"></img></a><br>
+					  <a><img class="rounded" src = "./resources/figures/Table1.png" width="800px"></img></a><br>
 				</center>
 				</td>
 			</tr>
 			<tr>
 				<td align=center width=720px>
 				  <span style="font-size:14px"><i>
-					Element-level action recognition results of representative methods.</i>
+					Each target model and the corresponding interpreter are grouped for comparison.</i>
 				</span>
 				</td>
 			</tr>
@@ -415,18 +367,20 @@
 			<br>
 
 			<table>
-			<center><h2> (2) Sparse sampling is insufficient for fine-grained action recognition. </h2></center>
+			<center><h2> (2) Pairwise examples and explanations for SBS (ResNet-50) on two datasets. </h2></center>
 			<tr>
 				  <td width=400px>
 				  <center>
-					  <a><img class="rounded" src = "./resources/images/tsn_vs_nframe.png" width="320px"></img></a><br>
+					  <a><img class="rounded" src = "./resources/figures/Figure4.png" width="800px"></img></a><br>
 				</center>
 				</td>
 			</tr>
 			<tr>
 				<td align=center width=720px>
 				  <span style="font-size:14px"><i>
-					Performances of TSN when varying the number of sampled frames during training.</i>
+					For each pair of images, the upper part visualizes the
+					AAMs of the top-3 attributes, which shows that the AAMs are attended to the discriminative attributes. The lower part shows the overall
+					distance and contributions of the top-3 attributes. These figures show the most contributed attributes discovered by the interpreter.</i>
 				</span>
 				</td>
 			</tr>
@@ -435,73 +389,27 @@
 			<br>
 
 			<table>
-				<center><h2> (3) How important is temporal information? </h2></center>
-				(a) Motion features (e.g. optical flows) could capture frame-wise temporal dynamics, leading to better performance of TSN.<br>
-				(b) Temporal dynamics play an important role in FineGym, and TRN could capture it.<br>
-				(c) Performance of TSM drops sharply when the number of testing frames is very different from that in training,
-				while TSN maintains its performance as only temporal average pooling is applied in it.<br>
+				<center><h2> (3) Under the cross-domain setting? </h2></center>
 				<tr>
 					  <td width=400px>
 					  <center>
-						  <a><img class="rounded" src = "./resources/images/temporal_importance.png" width="800px"></img></a><br>
+						  <a><img class="rounded" src = "./resources/figures/Table2.png" width="800px"></img></a><br>
 					</center>
 					</td>
 				</tr>
 				<tr>
 					<td align=center width=720px>
 					  <span style="font-size:14px"><i>
-						(a) Per-class performances of TSN with motion and appearance features in 6 element categories. <br>
-						(b) Performances of TRN on the set UB-circles using ordered or shuffled testing frames.<br>
-						(c) Mean-class accuracies of TSM and TSN on Gym99 when trained with 3 frames and tested with more frames.</i>
+						Evaluation of the interpreters for SBS (ResNet-50) under the cross-domain setting. 
+						M to D means the SBS models and interpreters are trained on Market-1501 and tested on DukeMTMC-ReID, and D to M means the reverse setting. 
+						The results demonstrate that the information loss of interpreters is very minor under the cross-domain setting.</i>
 					</span>
 					</td>
 				</tr>
 				</table>
 
-			<br>
-
-			<table>
-				<center><h2> (4) Does pre-training on large-scale video datasets help? </h2></center>
-				On FineGym, pre-training on Kinetics is not always helpful.
-				One potential reason is the large gaps in terms of temporal patterns between coarse- and fine-grained actions. 
-				<tr>
-					<td width=400px>
-					<center>
-						<a><img class="rounded" src = "./resources/images/pretrain.png" width="240px"></img></a>
-					</center>
-					</td>
-				</tr>
-				<tr>
-					<td align=center width=720px>
-					<span style="font-size:14px"><i>
-					Per-class performances of I3D pre-trained on Kinetics and ImageNet in various element categories.</i>
-					</span>
-					</td>
-				</tr>
-				</table>
-
-			<br>
 			
-			<table>
-				<center><h2> (4) Why pose information does not help? </h2></center>
-				Skeleton-based ST-GCN struggles due to the challenges in skeleton estimation on gymnastics instances.
-				<tr>
-					<td width=400px>
-					<center>
-						<a><img onmouseover="this.src='./resources/examples/pose_slow.gif';" onmouseout="this.src='./resources/examples/pose.gif';" src = "./resources/examples/pose.gif" width = "400px"></img></a>
-					</center>
-					</td>
-				</tr>
-				<tr>
-					<td align=center width=720px>
-					<span style="font-size:14px"><i>
-					The results of person detection and pose estimation using <a href='https://github.com/MVIG-SJTU/AlphaPose'>AlphaPose</href></a> for a Vault routine.
-					It can be seen that detections and pose estimations of the gymnast are missed in multiple frames, especially in frames with intense motion.
-					These frames are important for fine-grained recognition. (Hover on the GIF for a 0.25x slowdown) </i>
-					</span>
-					</td>
-				</tr>
-				</table>
+		
 					
 		</table>
 	      <br><br>
@@ -511,188 +419,23 @@
 		  <table id="download" align=center width=720px>
 			<center><h1>Download</h1></center>
 			<tr>
+		
 				<td width=300px>
 					<center>
-						<span style="font-size:24px">Categories</span><br>
-						<br>
+						<span style="font-size:24px">Log of train and test</span><br><br>
 						<img class="rounded" onmouseover="this.src='./resources/images/dataset_icon.jpg';" onmouseout="this.src='./resources/images/dataset_icon.jpg';" src = "./resources/images/dataset_icon.jpg" height = "150px"><br><br>
-						<span style="font-size:16px"><a href='resources/dataset/finegym_glabel_to_Qtree.json'>question annotation (json)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/set_categories.txt'>set-level category list (txt)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym99_categories.txt'>Gym99 category list (txt)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym288_categories.txt'>Gym288 category list (txt)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym530_categories.txt'>Gym530 category list (txt)</a></span><br>
-					<span style="font-size:16px"></span>
-					</center>
-				</td>
-				<td width=300px>
-					<center>
-						<span style="font-size:24px">v1.0</span><br>
-						<br>
-						<img class="rounded" onmouseover="this.src='./resources/images/dataset_icon.jpg';" onmouseout="this.src='./resources/images/dataset_icon.jpg';" src = "./resources/images/dataset_icon.jpg" height = "150px"><br><br>
-						<span style="font-size:16px"><a href='resources/dataset/finegym_annotation_info_v1.0.json'>temporal annotation (json)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym99_train_element_v1.0.txt'>Gym99 train split</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym99_val_element.txt'>Gym99 val split</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym288_train_element_v1.0.txt'>Gym288 train split</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym288_val_element.txt'>Gym288 val split</a></span><br>
-					<span style="font-size:16px"></span>
-					</center>
-				</td>
-				<td width=300px>
-					<center>
-						<span style="font-size:24px">v1.1</span><br><br>
-						<img class="rounded" onmouseover="this.src='./resources/images/dataset_icon.jpg';" onmouseout="this.src='./resources/images/dataset_icon.jpg';" src = "./resources/images/dataset_icon.jpg" height = "150px"><br><br>
-						<span style="font-size:16px"><a href='resources/dataset/finegym_annotation_info_v1.1.json'>temporal annotation (json)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym99_train_element_v1.1.txt'>Gym99 train split</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym99_val_element.txt'>Gym99 val split (same as v1.0)</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym288_train_element_v1.1.txt'>Gym288 train split</a></span><br>
-						<span style="font-size:16px"><a href='resources/dataset/gym288_val_element.txt'>Gym288 val split (same as v1.0)</a></span><br>
+						<span style="font-size:16px"><a href='resources/dataset/'>TBD</a></span><br>
+						<span style="font-size:16px"><a href='resources/dataset/'>TBD</a></span><br>
 					<span style="font-size:16px"></span>
 					</center>
 				</td>
 				<table>
 				<center><h2> Updates </h2></center>
-				[23/07/2020] We have made pre-extracted feature available at GitHub. Check out <a href='https://github.com/SDOlivia/FineGym/'>here</a>.<br>
-				[16/04/2020] We fix a small issue on the naming of the subaction identifier "A_{ZZZZ}_{WWWW}" to avoid ambiguity.
-				(Thanks <a href='https://kennymckormick.github.io/'>Haodong Duan</a> for pointing this out.)<br>
-				[16/04/2020] We include new subsections to track updates and address FAQs.<br>
+				[01/10/2021] We include new subsections to track updates and address FAQs.<br>
 				<center><h2> FAQs </h2></center>
-				Q0: License issue:<br>
-				A0: The annotations of FineGym are copyright by us and published under the Creative Commons Attribution-NonCommercial 4.0 International License.<br>
-				Q1: Some links are invalid on YouTube. How can I obtain the missing videos?<br>
-				Q1': I am located in mainland China and I cannot access YouTube. How can I get the dataset?<br>
-				A1: Please submit a Google form at <a href='https://forms.gle/z8iTwRhdMsfRCNkm7'>this link</a>.
-				We may reach you shortly.<br>
-				Q2: Is the event-/element-level instance in your dataset cut in integral seconds?<br>
-				A2: No. All levels of instances (actions and sub-actions) are annotated in <i>exact</i> timestamp (milliseconds) 
-				in a pursuit of frame-level preciseness.
-				The number in the identifier is derived from integral seconds due to conciseness.
-				Please refer to the instructions below for details.<br>
-				Q3: Difference of Mean and Top-1 accuracy in Table 2 & 3?<br>
-				A3: The Top-K accuracy is the fraction of the instances whose correct label falls in the top-k most confident predictions. In our case we take K=1.<br>
-				The mean accuracy is the averaged per-class accuracy. To be specific, we calculate the top-1 accuracy of each class i to be A_i.
-				The mean accuracy is the arithmetic mean of A_{1...N}, i.e. (A_1 + A_2 + ... + A_N)/N, where N is the number of classes.
-				<center><h2> How to read the temporal annotation files (JSON)? </h2></center> 
-				Below, we show an example entry from the above JSON annotation file:
-				<pre style='font-family: Courier; font-size:14px'>
-"0LtLS9wROrk": {
-	"E_002407_002435": {
-		"event": 4,
-		"segments": {
-			"A_0003_0005": {
-				"stages": 1,
-				"timestamps": [
-					[
-						3.45,
-						5.64
-					]
-				]
-			},
-			"A_0006_0008": { ... },
-			"A_0023_0028": { ... },
-			...
-		},
-		"timestamps": [
-			[
-				2407.32,
-				2435.28
-			]
-		]
-	},
-	"E_002681_002688": {
-		"event": 1,
-		"segments": {
-			"A_0000_0006": {
-				"stages": 3,
-				"timestamps": [
-					[
-						0.04,
-						3.2
-					],
-					[
-						3.2,
-						4.49
-					],
-					[
-						4.49,
-						6.57
-					]
-				]
-			}
-		},
-		"timestamps": [
-			[
-				2681.88,
-				2688.48
-			]
-		]
-	},
-	"E_002710_002737": { ... },
-	...
-}
-				</pre>
-				</table>
-				The example shows the annotations related to this video.
-				First of all, we assign the unique identifier <a style='font-family: Courier'>"0LtLS9wROrk"</a> to that video,
-				which corresponds to the 11-digit YouTube identifier. <br>
-				It contains all action (event-level) instances, whose names follow the format of <a style='font-family: Courier'>"E_{XXXXXX}_{YYYYYY}"</a>.
-				Here, "E" indicates "Event", and "XXXXXX"/"YYYYYY" indicates the zero-padded starting and ending timestamp (in seconds and truncated to Int).
-				<br>
-				Each action instance includes (1) the exact timestamps in the original video ('timestamps', in seconds),
-				(2) event label ('event'), and
-				(3) a list of annotated subaction (element-level) instances ('segments').
-				<br>
-				The annotated subaction instances follow the format of <a style='font-family: Courier'>"A_{ZZZZ}_{WWWW}"</a>.
-				Here, "A" indicates "subAction", and "ZZZZ"/"WWWW" indicates the zero-padded starting and ending timestamp (in seconds and truncated to Int).
-				<br>
-				Ech subaction instance includes (1) the number of stages of this subaction instance ('stages', 3 for Vault and 1 for other events)
-				(2) the exact timestamps of each stage <i>relative</i> to the starting time of event. ('timestamps', in seconds)
-				As a result, each subaction instance has a unique identifier <a style='font-family: Courier'>"{VIDEO_ID}_E_{XXXXXX}_{YYYYYY}_A_{ZZZZ}_{WWWW}"</a>.
-				This identifier serves as the instance name in the train/val splits of Gym99 and Gym288.
-			</tr>
-		   </table>
-
-		   <table>
-			<center><h2> How to read the question annotation files (JSON)? </h2></center>
-			Below, we show an example entry from the above JSON annotation file:
-			<pre style='font-family: Courier; font-size:14px'>
-"0": {
-	"BTcode": "1111111",
-	"questions": [
-		"round-off onto the springboard?",
-		"turning entry after round-off (turning in first flight phase)?",
-		"Facing the coming direction when handstand on vault
-		(0.5 turn in first flight phase)?",
-		"Body keep stretched  during salto (stretched salto)?",
-		"Salto with turn?",
-		"Facing vault table after landing?",
-		"Salto with 1.5 turn?"
-	],
-	"code": "6.00"
-},
-"1": {
-	"BTcode": "1111110",
-	"questions": [
-		"round-off onto the springboard?",
-		"turning entry after round-off (turning in first flight phase)?",
-		"Facing the coming direction when handstand on vault
-		(0.5 turn in first flight phase)?",
-		"Body keep stretched  during salto (stretched salto)?",
-		"Salto with turn?",
-		"Facing vault table after landing?",
-		"Salto with 1.5 turn?"
-	],
-	"code": "5.20"
-},
-...
-			</pre>
-			</table>
-			The example shows the questions related to each class.
-			The identifier corresponds to the label name provided in <a href='resources/dataset/gym530_categories_wset.txt'>Gym530 category list</a>.
-			Each class includes (1) a list of questions that are asked ('quetions'),
-			(2) a string of binary codes ('BTcode') where 1 refers to 'yes' and 0 refers to 'no',
-			(3) and original code in the <a href='http://www.fig-gymnastics.com/publicdir/rules/files/en_WAG%20CoP%202017-2020.pdf'>official codebook</a>.
-		</tr>
-	   </table>		   
+				Q0: TBD:<br>
+				A0: TBD.<br>
+				 </table>
 		 
 		 <br><br>
 		 <hr>
@@ -701,10 +444,10 @@
 			<center><h1>Paper</h1></center>
 			   <tr>
 				 <td align=center><a href=""><img class="layered-paper-big" style="height:160px" src="./resources/images/paper_pdf_thumb.png"/></a></td>
-				 <td><span style="font-size:14pt">Shao, Zhao, Dai, Lin.<br>
-				 FineGym: A Hierarchical Video Dataset for Fine-grained Action Understanding<br>
-				 In CVPR, 2020 (oral).<br>
-				 (<a href="https://arxiv.org/abs/2004.06704">arXiv</a>)</a>
+				 <td><span style="font-size:14pt">Chen, Liu, Liu, Zhang, Zhang, Mei.<br>
+				 Explainable Person Re-Identification with Attribute-guided Metric Distillation<br>
+				 In ICCV, 2021 (Poster).<br>
+				 (<a href="https://arxiv.org/abs/">arXiv</a>)</a>
 				 <span style="font-size:4pt"><a href=""><br></a>
 				 </span>
 				 </td>
@@ -728,11 +471,11 @@
 		   <span>
 				<!-- <center><span style="font-size:28px"><b>Cite</b></span></center> -->
 				<pre style = "font-family:Courier; font-size:14px">
-@inproceedings{shao2020finegym,
-title={FineGym: A Hierarchical Video Dataset for Fine-grained Action Understanding},
-author={Shao, Dian and Zhao, Yue and Dai, Bo and Lin, Dahua},
-booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-year={2020}
+@inproceedings{chen2021AMD,
+title={Explainable Person Re-Identification with Attribute-guided Metric Distillation},
+author=Chen, Liu and Liu, Zhang and Zhang, Mei.},
+booktitle={IEEE International Conference on Computer Vision (ICCV)},
+year={2021}
 }
 				</pre>
 		  </div>
@@ -748,9 +491,7 @@ year={2020}
   					<left>
 	  		  <center><h1>Acknowledgements</h1></center>
 				We sincerely thank the outstanding annotation team for their excellent work.
-				This work is partially supported by SenseTime Collaborative Grant on Large-scale Multi-modality Analysis
-				and the General Research Funds (GRF) of Hong Kong (No. 14203518 and No. 14205719).
-				The template of this webpage is borrowed from <a href=https://richzhang.github.io/colorization/>Richard Zhang</href><a>.
+				This work is partially supported by ...</href><a>.
 			</left>
 		</td>
 			 </tr>
@@ -764,7 +505,7 @@ year={2020}
 				<td width=400px>
 				  <left>
 			<center><h1>Contact</h1></center>
-			For further questions and suggestions, please contact Dian Shao (<a href='mailto:sd017@ie.cuhk.edu.hk'>sd017@ie.cuhk.edu.hk</a>).
+			For further questions and suggestions, please contact Xiaodong Chen (<a href='mailto:cxd1230@mail.ustc.edu.cn'>cxd1230@mail.ustc.edu.cn</a>).
 			
 			
 		</left>
