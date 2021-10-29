@@ -1,0 +1,14 @@
+_BASE_: "../Base-Strongerbaseline.yml"
+
+MODEL:
+  BACKBONE:
+    NAME: "build_resnet_backbone"
+    DEPTH: "34x"
+  HEADS:
+    IN_FEAT: 512
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+OUTPUT_DIR: "logs/dukemtmc/sbs_R34"

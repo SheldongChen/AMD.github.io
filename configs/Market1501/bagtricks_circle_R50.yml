@@ -1,0 +1,27 @@
+_BASE_: "../Base-Strongerbaseline.yml"
+
+DATASETS:
+  NAMES: ("Market1501",)
+  TESTS: ("Market1501",)
+
+MODEL:
+  BACKBONE:
+    WITH_NL: False
+  HEADS:
+
+    NORM: BN
+    NECK_FEAT: after
+
+    POOL_LAYER: gempool
+    CLS_LAYER: circleSoftmax
+    SCALE: 64
+    MARGIN: 0.35
+  LOSSES:
+    NAME: ("CrossEntropyLoss",)
+    CE:
+      EPSILON: 0.
+      SCALE: 1.
+
+
+
+OUTPUT_DIR: "logs/market1501/bagtricks_circle_R50"
