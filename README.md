@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Interpreter Project of FastReID
 
 FastReID is a research platform that implements state-of-the-art re-identification algorithms. It is a groud-up rewrite of the previous version, [reid strong baseline](https://github.com/michuanhaohao/reid-strong-baseline).
@@ -5,6 +6,14 @@ FastReID is a research platform that implements state-of-the-art re-identificati
 Our Interpreter Project is based on FastReID
 
 ## What's New
+=======
+# FastReID of Interpreter Project.
+
+FastReID is a research platform that implements state-of-the-art re-identification algorithms. It is a groud-up rewrite of the previous version, [reid strong baseline](https://github.com/michuanhaohao/reid-strong-baseline).
+
+## What's New
+
+>>>>>>> 20991536b0287d70bbe908e33b72f1f39f5b5e28
 - [Oct 2021] Quick Start of Interpreter Project.
 - [Sep 2020] Automatic Mixed Precision training is supported with pytorch1.6 built-in `torch.cuda.amp`. Set `cfg.SOLVER.AMP_ENABLED=True` to switch it on.
 - [Aug 2020] [Model Distillation](https://github.com/JDAI-CV/fast-reid/tree/master/projects/DistillReID) is supported, thanks for [guan'an wang](https://github.com/wangguanan)'s contribution.
@@ -30,19 +39,27 @@ See [GETTING_STARTED.md](https://github.com/JDAI-CV/fast-reid/blob/master/docs/G
 
 Learn more at out [documentation](). And see [projects/](https://github.com/JDAI-CV/fast-reid/tree/master/projects) for some projects that are build on top of fastreid.
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 20991536b0287d70bbe908e33b72f1f39f5b5e28
 ## Quick Start of Interpreter Project
 
 Step 0, modify the PATH in the shell script to suit your computer.
 
 
 Step 1, train ReID model:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20991536b0287d70bbe908e33b72f1f39f5b5e28
 ```bash
 bash shell/Market1501/0_train_market_bagtricks_euclidean.sh
 ```
 
 Step 2, train Interpreter model:
+<<<<<<< HEAD
 ```bash
 bash shell/Market1501/1_train_market_interpretation.sh
 ```
@@ -50,6 +67,12 @@ bash shell/Market1501/1_train_market_interpretation.sh
 In order to solve the requirements of demo, after several update iterations, the code of this version adds some functions, backbone for demo and Loss for specific datasets on the basis of the framework of our paper.
 
 For the slightly inconsistent parts between this code and paper description, please feel free to use, it does not affect the final performance.
+=======
+
+```bash
+bash shell/Market1501/1_train_market_interpretation.sh
+```
+>>>>>>> 20991536b0287d70bbe908e33b72f1f39f5b5e28
 
 ## Model Zoo and Baselines
 
