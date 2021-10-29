@@ -1,0 +1,14 @@
+_BASE_: "../Base-Strongerbaseline.yml"
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+MODEL:
+  BACKBONE:
+    WITH_NL: False
+    NAME: "build_osnet_backbone"
+    DEPTH: "x1_0"
+  HEADS:
+    IN_FEAT: 512
+OUTPUT_DIR: "logs/dukemtmc/sbs_OS50"

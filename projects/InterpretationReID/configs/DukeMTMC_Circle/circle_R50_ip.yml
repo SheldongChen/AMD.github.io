@@ -1,0 +1,68 @@
+_BASE_: "../Base-Strongerbaseline.yml"
+
+MODEL:
+  HEADS:
+    NECK_FEAT: "after"
+    IN_FEAT: 2048
+  LOSSES:
+    NAME: ("CrossEntropyLoss",)
+    CE:
+      EPSILON: 0.
+      SCALE: 1.
+  FREEZE_LAYERS: ["heads","backbone_2","backbone_1"]
+
+  BACKBONE:
+    NAME: "build_resnet_backbone"
+    WITH_NL: False
+    DEPTH: "50x"
+    PRETRAIN_PATH: "/export/home/pretrain_models/resnet50-19c8e357.pth"
+
+DATALOADER:
+  ATT_RESAMPLE: False
+
+DATASETS:
+  NAMES: ("DukeMTMC_Interpretation",)
+  TESTS: ("DukeMTMC_Interpretation",)
+
+INTERPRETATION:
+  FREEZE_LAYERS: ["heads","backbone_2","backbone_1"]
+  PRETRAIN_MODEL: '/export/home/cxd/fast-reid-interpretation-1008/logs/dukemtmc/bagtricks_circle_R50/model_final.pth'
+  ATT_PRETRAIN_DICT: '/export/home/cxd/fast-reid-interpretation-1008/pretrain_models/duke_dict_all.pth'
+
+  MODEL:
+    SHARE_LAYER: 3
+
+  LOSS:
+    att: 10.0
+    interpretation: 1.0
+    att_lamda: 0.0
+    threshold: 0.3
+
+  I_MODEL:
+    BACKBONE:
+      NAME: "build_resnet_backbone"
+      DEPTH: "50x"
+      LAST_STRIDE: 1
+      # Normalization method for the convolution layers.
+      NORM: "BN"
+      # Mini-batch split of Ghost BN
+      NORM_SPLIT: 1
+      # If use IBN block in backbone
+      WITH_IBN: False
+      # If use SE block in backbone
+      WITH_SE: False
+      # If use Non-local block in backbone
+      WITH_NL: False
+      # If use ImageNet pretrain model
+      PRETRAIN: True
+      # Pretrain model path
+      PRETRAIN_PATH: '/export/home/pretrain_models/resnet50-19c8e357.pth'
+    
+    HEADS:
+#      # Number of identity
+      NUM_CLASSES: 23  # _C.INTERPRETATION.NUM_ATT: 23  # num of attribute
+
+
+
+
+OUTPUT_DIR: "logs/dukemtmc/circle_R50_ip"
