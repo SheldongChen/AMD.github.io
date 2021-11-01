@@ -30,7 +30,7 @@ See [GETTING_STARTED.md](https://github.com/JDAI-CV/fast-reid/blob/master/docs/G
 
 Learn more at out [documentation](). And see [projects/](https://github.com/JDAI-CV/fast-reid/tree/master/projects) for some projects that are build on top of fastreid.
 
-##Requirements of Computer Hardware 
+## Requirements of Computer Hardware 
 
 GPU>=16GB memory
 
