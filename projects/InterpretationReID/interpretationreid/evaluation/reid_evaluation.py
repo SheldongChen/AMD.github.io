@@ -102,25 +102,7 @@ class ReidEvaluator(DatasetEvaluator):
 
         """
 
-        # for k,v in inputs.items():
-        #     print("*" * 30)
-        #     print(k)
-        #     print(v)
-        #     try:
-        #         print(v.shape)
-        #     except:
-        #         print(len(v))
-        #     print("*" * 30)
-        #
-        # for k, v in outs.items():
-        #     print("*"*30)
-        #     print(k)
-        #     print(v)
-        #     try:
-        #         print(v.shape)
-        #     except:
-        #         print(len(v))
-        #     print("*" * 30)
+
         if self.cfg.VISUAL.OPEN:
             self.imgs.append(inputs["images"].cpu())
         self.imgs_path.extend(inputs["img_paths"])
@@ -236,86 +218,6 @@ class ReidEvaluator(DatasetEvaluator):
         return copy.deepcopy(self._results)
 
 
-
-
-    # def explain_eval(self,dist_fake_stack, query_attribute, gallery_attribute, lamda=2.0):
-    #
-    #
-    #     _,num_att = query_attribute.size()
-    #     num_att = float(num_att)
-    #
-    #     n, m, _ = dist_fake_stack.size()
-    #     print(n,m)
-    #
-    #     dist_real_stack = query_attribute.unsqueeze(1) * gallery_attribute.unsqueeze(
-    #         0)  # -1 means different, 1 means same
-    #
-    #     assert dist_real_stack.size() == dist_fake_stack.size()
-    #     dist_real_stack_01 = (1.0 - dist_real_stack) / 2.0  # 1 means different, 0 means same
-    #     dist_real_stack_01_reverse = 1.0 - dist_real_stack_01  # 0 means different, 1 means same
-    #
-    #     dist_num_different = dist_real_stack_01.sum(-1)  # n x m
-    #     dist_num_same = dist_real_stack_01_reverse.sum(-1)  # n x m
-    #
-    #     # dist_fake_stack belong to 0.0~1.0
-    #     dist_fake_stack = dist_fake_stack / dist_fake_stack.sum(-1).unsqueeze(-1)  # n x m x num_att
-    #
-    #     # calcuate Precsion of different attribute
-    #     dist_fake_att_different = dist_fake_stack.argsort(dim=-1, descending=True)
-    #     dist_fake_att = (dist_fake_att_different.argsort(dim=-1, descending=False) < dist_num_different.unsqueeze(
-    #         -1)).float()  # n x m x num_att
-    #     Precsion_different = (dist_fake_att * dist_real_stack_01).sum(-1) / dist_num_different.clamp(min=1.0)
-    #     Precsion_different = Precsion_different.sum() / (n * m - (dist_num_different == 0).float().sum()).clamp(min=1.0)
-    #     self._results["Precsion_d"] = float(Precsion_different)
-    #     # print(dist_fake_att_different)
-    #
-    #     # calcuate Precsion of same attribute
-    #     dist_overflow = (dist_fake_stack > lamda / num_att).float() * (dist_num_same.unsqueeze(-1) == num_att).float()
-    #     dist_fake_att_same = dist_fake_stack.argsort(dim=-1, descending=False)
-    #     dist_fake_att = (dist_fake_att_same.argsort(dim=-1, descending=False) < dist_num_same.unsqueeze(
-    #         -1)).float() - dist_overflow  # n x m x num_att
-    #     Precsion_same = (dist_fake_att * dist_real_stack_01_reverse).sum(-1) / dist_num_same.clamp(min=1.0)
-    #     Precsion_same = Precsion_same.sum() / (n * m - (dist_num_same == 0).float().sum()).clamp(min=1.0)
-    #     self._results["Precsion_s"] = float(Precsion_same)
-    #
-    #     all_AP_d = []
-    #     all_AP_s = []
-    #     for i in range(n):
-    #         if i%50==0:
-    #             print(i)
-    #         for j in range(m):
-    #             if dist_num_different[i, j] == 0:
-    #                 continue
-    #             raw_cmc = dist_real_stack_01[i, j, dist_fake_att_different[i, j]]
-    #             # print(raw_cmc)
-    #             tmp_cmc = raw_cmc.cumsum(dim=-1)
-    #             tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
-    #             tmp_cmc = torch.tensor(tmp_cmc) * raw_cmc
-    #             AP = tmp_cmc.sum() / dist_num_different[i, j]
-    #             all_AP_d.append(AP)
-    #
-    #     for i in range(n):
-    #         if i%50==0:
-    #             print(i)
-    #         for j in range(m):
-    #             if dist_num_same[i, j] == 0:
-    #                 continue
-    #             if dist_num_same[i, j] == num_att:
-    #                 raw_cmc, _ = (dist_real_stack_01_reverse[i, j] - dist_overflow[i, j]).sort(dim=-1, descending=False)
-    #             else:
-    #                 raw_cmc = (dist_real_stack_01_reverse)[i, j, dist_fake_att_same[i, j]]
-    #             # print(raw_cmc)
-    #             tmp_cmc = raw_cmc.cumsum(dim=-1)
-    #             tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
-    #             tmp_cmc = torch.tensor(tmp_cmc) * raw_cmc
-    #             AP = tmp_cmc.sum() / dist_num_same[i, j]
-    #             all_AP_s.append(AP)
-    #
-    #     self._results["mAP_d"] = torch.tensor(all_AP_d).sum() / (n * m - (dist_num_different == 0).float().sum()).clamp(
-    #         min=1.0)
-    #     self._results["mAP_s"] = torch.tensor(all_AP_s).sum() / (n * m - (dist_num_same == 0).float().sum()).clamp(min=1.0)
-    #
-    #     return copy.deepcopy(self._results)
     def visualize(self):
         if comm.get_world_size() > 1:
             assert False
@@ -511,9 +413,6 @@ class ReidEvaluator(DatasetEvaluator):
         self.att_list = None
         self.feature_mask = []
 
-
-        #explain_result = self.explain_eval(dist_list_stack, query_real_attributes, gallery_real_attributes, lamda=2.0)
-        #explain_result = {}
 
 
         return dist_list_stack,query_real_attributes, gallery_real_attributes # n x m x NUM_ATT
@@ -854,30 +753,16 @@ def visualization_savefig(path_names, att_names, imgs, att_mask, feature_distanc
             else:
                 min_att_mask = att_mask[j // 2, i - 2].min()
                 max_att_mask = att_mask[j // 2, i - 2].max()
-                # min_att_mask = att_mask[j // 2, :].min()
-                # max_att_mask = att_mask[j // 2, :].max()
                 att_mask_use = (att_mask[j // 2, i - 2] - min_att_mask) / (max_att_mask - min_att_mask)  # 0~1
 
-                # att_h,att_w = att_mask_use.size()
-                # att_mask_use = att_mask_use.reshape(att_h*att_w)
-                # values, _ = att_mask_use.sort(dim=-1, descending=True)
-                # max_v = values[att_h*att_w // 3]
-                # att_mask_use = torch.where(att_mask_use > max_v, torch.ones_like(att_mask_use),
-                #                            torch.zeros_like(att_mask_use))
-                # att_mask_use = att_mask_use.reshape(att_h,att_w)
 
                 if only_hot_map:
                     plt.imshow(att_mask_use.pow(2), cmap='nipy_spectral')
-                    #plt.imshow(cv2.applyColorMap(np.uint8(255 * att_mask_use), cv2.COLORMAP_JET))
                 else:
 
                     plt.imshow((imgs[(j // 2)]).permute(1, 2, 0))
                     plt.imshow(att_mask_use.pow(2), cmap='nipy_spectral',alpha=0.4)
-                    #plt.imshow(cv2.applyColorMap(np.uint8(255 * att_mask_use), cv2.COLORMAP_JET),alpha=0.5)
-                # plt.imshow(att_mask[j//2,i-2]/att_mask[j//2,i-2].max(),cmap='RdGy_r')
-                # cb = plt.colorbar()
-                # cb.ax.tick_params(labelsize=6)  #设置色标刻度字体大小
-                # cb.set_label("density")
+
 
     # distance
     for j in list(range(2, num_col, 2)):
@@ -916,43 +801,3 @@ def visualization_savefig(path_names, att_names, imgs, att_mask, feature_distanc
     torch.save(feature_distance,os.path.join(output_dir, path_names[0].replace(".", "_") + ".pth"))
     plt.clf()
     plt.close()
-# def Thread_d(dist_real_stack_01, dist_fake_att_different, dist_num_different, list_n: list, list_m: list,core=0):
-#     #print(id(dist_real_stack_01))
-#     print("begined____s" + str(core))
-#     all_AP_d = []
-#     for i in list_n:
-#         for j in list_m:
-#             if dist_num_different[i, j] == 0:
-#                 continue
-#             raw_cmc = dist_real_stack_01[i, j, dist_fake_att_different[i, j]]
-#             # print(raw_cmc)
-#             tmp_cmc = raw_cmc.cumsum(dim=-1)
-#             tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
-#             tmp_cmc = torch.tensor(tmp_cmc) * raw_cmc
-#             AP = tmp_cmc.sum() / dist_num_different[i, j]
-#             all_AP_d.append(AP)
-#     all_AP_d = torch.tensor(all_AP_d).sum()
-#     print("finished____d" + str(core))
-#     return all_AP_d
-#
-# def Thread_s(dist_real_stack_01_reverse, dist_overflow, dist_fake_att_same, dist_num_same, num_att, list_n: list,
-#              list_m: list,core=0):
-#     print("begined____s" + str(core))
-#     all_AP_s = []
-#     for i in list_n:
-#         for j in list_m:
-#             if dist_num_same[i, j] == 0:
-#                 continue
-#             if dist_num_same[i, j] == num_att:
-#                 raw_cmc, _ = (dist_real_stack_01_reverse[i, j] - dist_overflow[i, j]).sort(dim=-1, descending=False)
-#             else:
-#                 raw_cmc = (dist_real_stack_01_reverse)[i, j, dist_fake_att_same[i, j]]
-#             # print(raw_cmc)
-#             tmp_cmc = raw_cmc.cumsum(dim=-1)
-#             tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
-#             tmp_cmc = torch.tensor(tmp_cmc) * raw_cmc
-#             AP = tmp_cmc.sum() / dist_num_same[i, j]
-#             all_AP_s.append(AP)
-#     all_AP_s = torch.tensor(all_AP_s).sum()
-#     print("finished____s"+str(core))
-#     return all_AP_s

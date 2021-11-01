@@ -35,18 +35,18 @@ class IRBaseline(nn.Module):
 
         # backbone
         backbone = build_backbone(cfg)
-        #for p in backbone.p
+        #
         i_cfg = cfg.clone()
         i_cfg.defrost()
         i_cfg.MODEL.BACKBONE = i_cfg.INTERPRETATION.I_MODEL.BACKBONE
         i_cfg.MODEL.HEADS = i_cfg.INTERPRETATION.I_MODEL.HEADS
-        #i_cfg.MODEL.HEADS = i_cfg.INTERPRETATION.I_MODEL.HEADS
+
         i_cfg.freeze()
 
         backbone_plus = build_backbone(i_cfg)
         backbone_att = build_backbone(i_cfg)
 
-        #self.backbone = backbone  # self.backbone = self.backbone_1 + self.backbone_2
+        #self.backbone
 
         if cfg.INTERPRETATION.MODEL.SHARE_LAYER == 0:
             self.backbone_1 = torch.nn.Sequential()
@@ -110,17 +110,12 @@ class IRBaseline(nn.Module):
 
 
         self.backbone_4.add_module("conv1",nn.Conv2d(cfg.INTERPRETATION.I_MODEL.HEADS.IN_FEAT, 256, kernel_size=3,padding=1, bias=False))
-        #self.backbone_4.conv1.apply(weights_init_kaiming)
+
 
         self.backbone_4.add_module("conv2",
                                    nn.Conv2d(256, cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES,
                                              kernel_size=1, bias=False))
-        #self.backbone_4.conv2.apply(weights_init_kaiming)
 
-            #feature_bias : batch x 2048 x 1 x 1
-            #self.backbone_5 = nn.Sequential()
-            #self.backbone_5.add_module("avgpool",nn.AdaptiveAvgPool2d(1))
-            #self.backbone_5.add_module("conv1",nn.Conv2d(cfg.MODEL.HEADS.IN_FEAT,cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES*cfg.MODEL.HEADS.IN_FEAT ,kernel_size=1, bias=True))
 
         if self._cfg.INTERPRETATION.I_MODEL.BACKBONE.ADD_PARAMETER:
             self.backbone_add = nn.Sequential()
@@ -144,19 +139,9 @@ class IRBaseline(nn.Module):
         i_cfg.defrost()
         i_cfg.MODEL.HEADS.IN_FEAT /= 1
         i_cfg.freeze()
-        #
-        # i_cfg = cfg.clone()
-        # i_cfg.defrost()
-        # i_cfg.MODEL.BACKBONE = i_cfg.INTERPRETATION.I_MODEL.BACKBONE
-        # i_cfg.MODEL.HEADS = i_cfg.INTERPRETATION.I_MODEL.HEADS
-        # i_cfg.freeze()
-        #
-        # # att:  alpha = g(I)
-        # self.backbone_att = build_backbone(i_cfg)
-        #
-        #
-        #
-        # self.heads_att = build_reid_heads(i_cfg)
+
+
+        #set for data sample, not necessary for explainable ReID
         if self._cfg.DATASETS.NAMES[0] == "Market1501_And_Interpretation":
             self.attribute_percent = [26.498002663115845, 24.63382157123835, 39.01464713715047, 16.378162450066576,
                                       9.187749667110518, 16.378162450066576, 1.8641810918774968, 7.723035952063914,
@@ -210,31 +195,22 @@ class IRBaseline(nn.Module):
         feature_middle = self.backbone_3(feature_low) # b x 2048 x h x w , default: 64 x 2048 x 24 x 8
 
         feature_att  = self.backbone_att(feature_low)
-        #feature_att = features
+
 
         if self._cfg.INTERPRETATION.I_MODEL.BACKBONE.ADD_PARAMETER:
-            #print("0,",feature_middle.size())
+
             feature_mask = self.backbone_add(feature_middle)
-            #print("1,",feature_mask.size())
+
             feature_mask = self.backbone_4(feature_mask)
-            #print("2,",feature_mask.size())
+
         else:
             feature_mask = self.backbone_4(feature_middle)
 
-        #feature_bias = self.backbone_5(feature_middle)
-
-        # print(feature_mask.shape)
-        # print(feature_bias.shape)
 
         b , n , h , w = feature_mask.shape
-        # assert feature_mask[i,j].sum() == h*w  and  feature_mask[i,j].average() == 1
-        #feature_mask = nn.Softmax(dim=-1)(feature_mask.reshape(b,n,h*w)).reshape(b,n,h,w) *(h*w)
-        #feature_mask = 2*nn.Sigmoid()(feature_mask.reshape(b, n, h * w)).reshape(b, n, h, w) #* (h * w)
-        #feature_mask = feature_mask+1
-        #print(feature_mask[0,0])
+
         feature_mask = ((feature_mask.detach().clone()<0)*(feature_mask)).exp()-1+((feature_mask.detach().clone()>=0)*(feature_mask)+1).pow(0.5)
 
-        #feature_bias = ((feature_bias.detach().clone() < 0) * (feature_bias)).exp() - 1 + ((feature_bias.detach().clone() >= 0) * (feature_bias) + 1).sqrt()
 
 
 
@@ -249,12 +225,9 @@ class IRBaseline(nn.Module):
             if targets.sum() < 0: targets.zero_()
 
             att_list = list()
-            #print(features.shape,feature_mask.shape)
+
             for i in range(0,n):
-                #print(features.shape,feature_mask.shape)
-                #print( features_A.shape)
-                #print(features.size())
-                #print(feature_mask.size())
+
                 dict_heads = self.heads(features * feature_mask[:, i:i+1, :, :], targets,self.training)
 
                 att_heads = self.att_heads(feature_att,targets,self.training)
@@ -273,33 +246,11 @@ class IRBaseline(nn.Module):
                     else:
                         unused_param += (torch.zeros_like(v) * v).sum()
                 dict_heads = dict_heads["features"] + unused_param
-
-
-
-
-
-
-
                 att_list.append(dict_heads)
 
             outputs = self.heads(features, targets,self.training)
 
-            #fake_attributes_dict = self.heads_att(features_att, None, True)
 
-            # DistributedDataParallel Training , find_unused_parameters=True
-            # unused_param = None
-            # for k, v in fake_attributes_dict.items():
-            #     if unused_param == None:
-            #         unused_param = (torch.zeros_like(v) * v).sum()
-            #     else:
-            #         unused_param += (torch.zeros_like(v) * v).sum()
-            #
-            # fake_attributes = fake_attributes_dict["cls_outputs"]+unused_param
-
-            # feature_mask_zip = torch.zeros_like(feature_mask[:,:n//self._cfg.MODEL.HEADS.IN_FEAT,:,:])
-            # for i in range(n//self._cfg.MODEL.HEADS.IN_FEAT):
-            #     feature_mask_zip[:,i,:,:] = feature_mask[:, i*self._cfg.MODEL.HEADS.IN_FEAT:(i + 1)*self._cfg.MODEL.HEADS.IN_FEAT, :, :].mean(dim=1)
-            # feature_mask = feature_mask_zip
 
             return {
                 "outputs": outputs,
@@ -321,12 +272,6 @@ class IRBaseline(nn.Module):
                 else:
                     dict_heads = dict_heads
                 att_list.append(dict_heads)
-            #fake_attributes = self.heads_att(features_att,None,True)["cls_outputs"]
-
-            # feature_mask_zip = torch.zeros_like(feature_mask[:,:n//self._cfg.MODEL.HEADS.IN_FEAT,:,:])
-            # for i in range(n//self._cfg.MODEL.HEADS.IN_FEAT):
-            #     feature_mask_zip[:,i,:,:] = feature_mask[:, i*self._cfg.MODEL.HEADS.IN_FEAT:(i + 1)*self._cfg.MODEL.HEADS.IN_FEAT, :, :].mean(dim=1)
-            # feature_mask = feature_mask_zip
             #print(feature_mask.shape)
             return {
                 "outputs": outputs,
@@ -406,11 +351,10 @@ class IRBaseline(nn.Module):
                 self._cfg.MODEL.LOSSES.CIRCLE.ALPHA,
             ) * self._cfg.MODEL.LOSSES.CIRCLE.SCALE
 
-        #TODO CXD
+
         loss_dict_attribute = self.attribute_loss(outs,self._cfg)
         loss_dict.update(**loss_dict_attribute)
-        #loss_dict["loss_att"] = loss_dict_attribute["loss_att"]
-        #loss_dict["loss_interpretation"] = loss_dict_attribute["loss_interpretation"]
+
 
 
         loss_dict['loss_attprec'] = 100*self.cross_entropy_sigmoid_loss(outs['att_heads']['cls_outputs'], gt_classes=outs['real_attributes'], sample_weight=self.sample_weight)
@@ -427,7 +371,7 @@ class IRBaseline(nn.Module):
         return weights
 
     def cross_entropy_sigmoid_loss(self, pred_class_logits, gt_classes, sample_weight=None):
-        #print(pred_class_logits[0], gt_classes[0])
+
         gt_classes = (gt_classes+1)/2
 
 
@@ -472,13 +416,7 @@ class IRBaseline(nn.Module):
 
         # fmt: off
         outputs           = outs["outputs"]
-        #gt_labels         = outs["targets"]
 
-
-
-        # model predictions
-        #pred_class_logits = outputs['pred_class_logits'].detach()
-        #cls_outputs       = outputs['cls_outputs']
         pred_features     = outputs['features']
 
 
@@ -504,8 +442,7 @@ class IRBaseline(nn.Module):
         else:
         '''
         all_embedding = embedding
-        #all_targets = targets
-        #all_fake_attributes = fake_attributes
+
         all_real_attributes = real_attributes # batch x m
         all_att_list = att_list
 
@@ -523,10 +460,6 @@ class IRBaseline(nn.Module):
             dist_mat_fake[i] = euclidean_dist(all_att_list[i],all_att_list[i]) # mat: nxm
 
         dist_mat_fake = dist_mat_fake.permute(1, 2, 0).contiguous()  # mat:   n x m x NUM_ATT
-
-        # TODO CXD EXP
-        #all_abs_attributes = (all_fake_attributes.reshape(batch,1,cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES)  - all_fake_attributes.reshape(1,batch,cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES)).abs().exp() # n x m x NUM_ATT
-
 
         loss_interpretation_withoutmean = (dist_mat_real-dist_mat_fake.mean(dim=-1)).abs() # n x m
         for i in range(batch):
@@ -620,66 +553,38 @@ class IRBaseline(nn.Module):
         # (dist_mat_fake_percent * (1-all_real_attributes_mat_0_1)).sum(-1) <=  same_attribute_threshold
         loss_same_sum = F.relu((dist_mat_fake_percent * (1.0-all_real_attributes_mat_0_1)).sum(-1) -  same_attribute_threshold)
 
-        # self.logger.info("all_real_attributes {}".format(all_real_attributes))
-        # self.logger.info("1.0-all_real_attributes_mat_0_1 :{} \n{}".format((1.0-all_real_attributes_mat_0_1).size(), (1.0-all_real_attributes_mat_0_1)))
-        # self.logger.info("different_attribute_threshold \n{} ".format(different_attribute_threshold))
-        # self.logger.info("all_real_attributes_mat_0_1.mean \n{} ".format( all_real_attributes_mat_0_1.mean(
-        #     dim=-1)))
-        #
-        #
-        # self.logger.info("dist_mat_fake_percent :{} \n{}".format(dist_mat_fake_percent.size(),dist_mat_fake_percent))
-        # self.logger.info("loss_different_sum :{} \n{}".format(loss_different_sum.size(),loss_different_sum))
-        # self.logger.info("loss_same_sum :{} \n{}".format(loss_same_sum.size(),loss_same_sum))
-
         assert loss_different_sum.size()==loss_same_sum.size()
         #print(loss_different_sum.size())
 
         loss_different_sum = loss_different_sum.mean()
         loss_same_sum = loss_same_sum.mean()
 
-        # lamda = quadratic(torch.tensor([self._cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES  ],dtype=torch.float32),different_attribute_num)  # n x m
-        #
-        # lamda_different = (1.0-lamda)
-        # lamda_same = (1+lamda)
 
         lamda = quadratic_exp(torch.tensor([self._cfg.INTERPRETATION.I_MODEL.HEADS.NUM_CLASSES ],dtype=torch.float32,device=different_attribute_num.device ),different_attribute_num)  # n x m
-
         lamda_different = (-lamda).exp().unsqueeze(-1)
-
         lamda_same = (lamda.exp()).unsqueeze(-1)
 
-        #self.logger.info("lamda_different:\n{}".format(lamda_different))
-        #self.logger.info("lamda_same:\n{}".format(lamda_same))
-        # (dist_mat_fake_percent  ) >= (1.0-lamda) * all_real_attributes_mat_0_1 * different_attribute_threshold.unsqueeze(-1) / different_attribute_num.unsqueeze(-1).clamp(min=1e-6)
         loss_different = F.relu( lamda_different *all_real_attributes_mat_0_1 * different_attribute_threshold.unsqueeze(-1) / different_attribute_num.unsqueeze(
             -1).clamp(min=1e-6)  - dist_mat_fake_percent)
 
 
-
-        # ( (1 - all_real_attributes_mat_0_1) * dist_mat_fake_percent  ) <= (1.0+lamda) *  same_attribute_threshold.unsqueeze(-1) / same_attribute_num.unsqueeze(-1).clamp(min=1e-6)
-        #lamda_same = 1.0
         loss_same = F.relu(((1.0 - all_real_attributes_mat_0_1) * dist_mat_fake_percent) -
             lamda_same * same_attribute_threshold.unsqueeze(-1) / same_attribute_num.unsqueeze(-1).clamp(
             min=1e-6))
 
-        # loss_var =(1.0 - all_real_attributes_mat_0_1) * dist_mat_fake_percent
-        # #print(loss_var.max(dim=-1))
-        # max_loss_var , _ = loss_var.max(dim=-1)
-        # min_loss_var, _  = torch.where(loss_var <= 1e-10, torch.ones_like(loss_var) * loss_var.max(), loss_var).min(dim=-1)
-        # loss_var = (max_loss_var-min_loss_var).mean()
 
         ################
         color_mat = all_real_attributes.unsqueeze(0) + all_real_attributes.unsqueeze(
             1)  # n x m x NUM_ATT , belong to {-2, 0, 2} , -2 means all no , 0 means different , 2 means all yes
         color_mat = torch.where(color_mat<=-0.5,torch.ones_like(color_mat), torch.zeros_like(color_mat))
 
-        #color_mat_allno_count = color_mat.sum(-1).clamp(min=1.0) # n x m
 
 
         color_allno = color_mat * dist_mat_fake_percent
         color_notallno = (1.0-color_mat) * dist_mat_fake_percent
         color_allno_threshold =  self._cfg.INTERPRETATION.LOSS.threshold
 
+        #Some fine tuning on Loss, it does not affect the main results. it is not necessary for explainable ReID
         if self._cfg.DATASETS.NAMES[0]=="Market1501_Interpretation":
             color_mat_notallno_count_up = (1.0 - color_mat[:,:,4:13]).sum(-1).clamp(min=1.0)  # n x m
 
@@ -797,42 +702,7 @@ class IRBaseline(nn.Module):
             self.logger.info("dict_loss_att:\n{}".format(dict_loss_att))
 
 
-        return loss_different_sum+10*loss_different+loss_same_sum+10*loss_same+loss_color_up+loss_color_down#+10*loss_var+
-
-#
-# def quadratic(A, N):
-#     # assert N <= A
-#     A = A.float()
-#     N = N.float()
-#
-#     N = N.clamp(min=0.1, max=float(A)-0.5)
-#     a = (A - N) * ((N / A * math.pi / 2.0).sin())
-#     b = N * (1.0 - (N / A * math.pi / 2.0).sin())
-#
-#     # print(N)
-#     # tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-#     #         18, 19, 20, 21, 22, 23])
-#     # print((a - b) / (a + b))
-#     # tensor([0.9870, 0.7057, 0.6290, 0.5806, 0.5452, 0.5175, 0.4947, 0.4754, 0.4588,
-#     #         0.4442, 0.4313, 0.4196, 0.4091, 0.3994, 0.3906, 0.3824, 0.3748, 0.3677,
-#     #         0.3611, 0.3549, 0.3490, 0.3435, 0.3383, 0.3328])
-#
-#     return (a - b) / (a + b)
-
-
-# def quadratic_exp(A, N):
-#     # assert N <= A
-#     A = A.float()
-#     N = N.float()
-#     N = N.clamp(min=0.1, max=float(A)-0.5)
-#     # print(((N / A)*math.pi/2.0).sin()/(N / A))
-#     # print((1-((N / A)*math.pi/2.0).sin())/((A-N) / A))
-#     # print(((N / A)*math.pi/2.0).sin())
-#     a = (A - N) * ((N / A * math.pi / 2.0).sin())
-#     b = N * (1.0 - (N / A * math.pi / 2.0).sin())
-#
-#     # print(a/b)
-#     return (a / b).log() / 2.0
+        return loss_different_sum+10*loss_different+loss_same_sum+10*loss_same+loss_color_up+loss_color_down
 
 
 def quadratic_exp(A, N):
