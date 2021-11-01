@@ -29,8 +29,11 @@ The designed architecture follows this guide [PyTorch-Project-Template](https://
 See [GETTING_STARTED.md](https://github.com/JDAI-CV/fast-reid/blob/master/docs/GETTING_STARTED.md).
 
 Learn more at out [documentation](). And see [projects/](https://github.com/JDAI-CV/fast-reid/tree/master/projects) for some projects that are build on top of fastreid.
+#Requirements of Computer Hardware 
 
+GPU>=16GB memory
 
+RAM>=128GB memory
 
 ## Quick Start of Interpreter Project
 
@@ -41,6 +44,8 @@ Step 1, train ReID model:
 ```bash
 bash shell/Market1501/0_train_market_bagtricks_euclidean.sh
 ```
+
+Ps: [release model on Market1501](https://github.com/SheldongChen/AMD.github.io/releases/download/model/market_circle_r50_ip.pth)
 
 Step 2, train Interpreter model:
 ```bash
