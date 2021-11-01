@@ -29,7 +29,8 @@ The designed architecture follows this guide [PyTorch-Project-Template](https://
 See [GETTING_STARTED.md](https://github.com/JDAI-CV/fast-reid/blob/master/docs/GETTING_STARTED.md).
 
 Learn more at out [documentation](). And see [projects/](https://github.com/JDAI-CV/fast-reid/tree/master/projects) for some projects that are build on top of fastreid.
-#Requirements of Computer Hardware 
+
+## Requirements of Computer Hardware 
 
 GPU>=16GB memory
 
