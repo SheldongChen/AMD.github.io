@@ -93,6 +93,7 @@ class IRBaseline(nn.Module):
                     module = "backbone_plus."+k
                     self.backbone_3.add_module(name, eval(module))
 
+# backbone_att is designed for demo, pseudo tag and stable re-weight operation, not necessary for explainable ReID
             self.backbone_att = nn.Sequential()
             for k,v in backbone_att.named_children():
                 if k in name_list:

@@ -69,10 +69,10 @@ If you use Fastreid in your research or wish to refer to the baseline results pu
 
 ```BibTeX
 @inproceedings{chen2021AMD,
-title={Explainable Person Re-Identification with Attribute-guided Metric Distillation},
-author=Chen, Liu and Liu, Zhang and Zhang, Mei},
-booktitle={IEEE International Conference on Computer Vision (ICCV)},
-year={2021}
+  title={Explainable Person Re-Identification with Attribute-guided Metric Distillation},
+  author=Chen, Liu and Liu, Zhang and Zhang, Mei},
+  booktitle={IEEE International Conference on Computer Vision (ICCV)},
+  year={2021}
 }
 
 @article{he2020fastreid,
