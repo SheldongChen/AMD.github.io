@@ -400,7 +400,6 @@ class ReidEvaluator(DatasetEvaluator):
 
 
 
-                    # visualization_savefig(choose_path_names, choose_att_names, choose_imgs/255.0, choose_att_mask, choose_feature_distance, choose_real_attributes, choose_fake_attributes, output_dir=os.path.join(self.cfg.OUTPUT_DIR, "output_imgs_"+self.mkdir_id),only_hot_map=True)
                     visualization_savefig(choose_path_names, choose_att_names, choose_imgs / 255.0, choose_att_mask,
                                           choose_feature_distance, choose_real_attributes, choose_fake_attributes,
                                           output_dir=os.path.join(self.cfg.OUTPUT_DIR, "output_imgs_" + self.mkdir_id),only_hot_map=False)
@@ -468,8 +467,7 @@ class ReidEvaluator(DatasetEvaluator):
 
 
         if p_att==None and q_att==None:
-            #type 3
-            bias_dist = bias_dist.sum(-1)
+            raise False
         else:
             #type 2
             bias_dist = bias_dist / bias_dist.sum(-1).unsqueeze(-1)  # n x m x NUM_ATT
@@ -540,20 +538,7 @@ class ReidEvaluator(DatasetEvaluator):
 
     def evaluate(self):
         if comm.get_world_size() > 1:
-            comm.synchronize()
-            features = comm.gather(self.features)
-            features = sum(features, [])
-
-            pids = comm.gather(self.pids)
-            pids = sum(pids, [])
-
-            camids = comm.gather(self.camids)
-            camids = sum(camids, [])
-
-            if not comm.is_main_process():
-                return {}
-
-
+            raise False
         else:
             features = self.features
             pids = self.pids
@@ -757,11 +742,14 @@ def visualization_savefig(path_names, att_names, imgs, att_mask, feature_distanc
 
 
                 if only_hot_map:
+                    # For a better viewing experience
                     plt.imshow(att_mask_use.pow(2), cmap='nipy_spectral')
+                    #plt.imshow(att_mask_use, cmap='nipy_spectral')
                 else:
 
                     plt.imshow((imgs[(j // 2)]).permute(1, 2, 0))
                     plt.imshow(att_mask_use.pow(2), cmap='nipy_spectral',alpha=0.4)
+                    #plt.imshow(att_mask_use, cmap='nipy_spectral',alpha=0.4)
 
 
     # distance
