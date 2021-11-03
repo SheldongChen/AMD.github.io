@@ -57,6 +57,23 @@ In order to solve the requirements of demo, after several update iterations, the
 
 For the slightly inconsistent parts between this code and paper description, please feel free to use, it does not affect the final performance.
 
+## Samples of Visualization
+
+<div align="center">
+  <img src="https://github.com/SheldongChen/AMD.github.io/blob/main/projects/InterpretationReID/mask_samples/positive_att_mask.jpg" width="800px"/><br>
+    <p style="font-size:1.5vw;">Positive Mask</p>
+</div>
+
+
+<div align="center">
+  <img src="https://github.com/SheldongChen/AMD.github.io/blob/main/projects/InterpretationReID/mask_samples/negative_att_mask.jpg" width="800px"/><br>
+    <p style="font-size:1.5vw;">Negative Mask</p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/SheldongChen/AMD.github.io/blob/main/projects/InterpretationReID/masked_img_samples/0060_c3s1_007726_00_jpgnotonly_hot_map.jpg" width="800px"/><br>
+    <p style="font-size:1.5vw;">Person Sample</p>
+</div>
 ## Model Zoo and Baselines
 
 We provide a large set of baseline results and trained models available for download in the [Fastreid Model Zoo](https://github.com/JDAI-CV/fast-reid/blob/master/docs/MODEL_ZOO.md).
