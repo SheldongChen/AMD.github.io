@@ -74,6 +74,7 @@ For the slightly inconsistent parts between this code and paper description, ple
   <img src="https://github.com/SheldongChen/AMD.github.io/blob/main/projects/InterpretationReID/masked_img_samples/0060_c3s1_007726_00_jpgnotonly_hot_map.jpg" width="800px"/><br>
     <p style="font-size:1.5vw;">Person Sample</p>
 </div>
+
 ## Model Zoo and Baselines
 
 We provide a large set of baseline results and trained models available for download in the [Fastreid Model Zoo](https://github.com/JDAI-CV/fast-reid/blob/master/docs/MODEL_ZOO.md).
