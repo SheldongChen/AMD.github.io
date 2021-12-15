@@ -585,6 +585,7 @@ class IRBaseline(nn.Module):
         color_allno_threshold =  self._cfg.INTERPRETATION.LOSS.threshold
 
         #Some fine tuning on Loss, it does not affect the main results. it is not necessary for explainable ReID
+        ## loss_color_up and loss_color_down is not necessary !!!! they can be removed !!!
         if self._cfg.DATASETS.NAMES[0]=="Market1501_Interpretation":
             color_mat_notallno_count_up = (1.0 - color_mat[:,:,4:13]).sum(-1).clamp(min=1.0)  # n x m
 
@@ -701,7 +702,7 @@ class IRBaseline(nn.Module):
                 assert False
             self.logger.info("dict_loss_att:\n{}".format(dict_loss_att))
 
-
+        # loss_color_up and loss_color_down is not necessary !!!! they can be removed !!!
         return loss_different_sum+10*loss_different+loss_same_sum+10*loss_same+loss_color_up+loss_color_down
 
 
