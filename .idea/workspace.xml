@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55ff8f3f-88e2-49b3-85df-c22e091dac3f" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1z88KmEZB72uWeKfIUfUXrIBpdY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\chenxiaodong43\Desktop\fast-reid-interpretation-1008\docs" />
+      <recent name="C:\Users\chenxiaodong43\Desktop\fast-reid-interpretation-1008\shell\Market1501" />
+      <recent name="C:\Users\chenxiaodong43\Desktop\fast-reid-interpretation-1008\shell\DukeMTMC" />
+      <recent name="C:\Users\chenxiaodong43\Desktop\fast-reid-interpretation-1008\projects\InterpretationReID\configs" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55ff8f3f-88e2-49b3-85df-c22e091dac3f" name="Changes" comment="" />
+      <created>1633518295614</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633518295614</updated>
+      <workItem from="1633518299234" duration="2099000" />
+      <workItem from="1633528307108" duration="1721000" />
+      <workItem from="1633587393989" duration="3930000" />
+      <workItem from="1633609244956" duration="466000" />
+      <workItem from="1633674914927" duration="316000" />
+      <workItem from="1633675253722" duration="56000" />
+      <workItem from="1633704407963" duration="747000" />
+      <workItem from="1634632477150" duration="32000" />
+      <workItem from="1635150039672" duration="326000" />
+      <workItem from="1635150408925" duration="682000" />
+      <workItem from="1635151407738" duration="48000" />
+      <workItem from="1635488826289" duration="487000" />
+      <workItem from="1635489337993" duration="8000" />
+      <workItem from="1635521147156" duration="179000" />
+      <workItem from="1635754567007" duration="251000" />
+      <workItem from="1635754872883" duration="48000" />
+      <workItem from="1635755687223" duration="271000" />
+      <workItem from="1635777513252" duration="8000" />
+      <workItem from="1635782196508" duration="573000" />
+      <workItem from="1635950362181" duration="422000" />
+      <workItem from="1635951512852" duration="371000" />
+      <workItem from="1639576106452" duration="54000" />
+      <workItem from="1640173726641" duration="526000" />
+      <workItem from="1640174329061" duration="37000" />
+      <workItem from="1640175086548" duration="60000" />
+      <workItem from="1640241779093" duration="39000" />
+      <workItem from="1641464866934" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
